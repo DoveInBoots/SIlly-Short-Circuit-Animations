@@ -261,7 +261,7 @@
 
         .graph-wrapper {
             position: relative;
-            height: 475px; /* Уменьшено на 25px */
+            height: 475px;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -285,6 +285,55 @@
 
         .key-point {
             fill: #e2267b;
+        }
+
+        /* Область схемы уровня шин */
+        .scheme-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.15);
+            border: 2px solid #ffccdd;
+            margin-top: 25px;
+        }
+
+        .scheme-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffccdd;
+        }
+
+        .scheme-header h2 {
+            color: #ff66b2;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .scheme-info {
+            color: #ff66aa;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: #fff0f5;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .scheme-image {
+            text-align: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border: 2px dashed #ffccdd;
+        }
+
+        .scheme-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Подвал */
@@ -363,6 +412,12 @@
             button {
                 width: 100%;
             }
+            
+            .scheme-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -422,7 +477,6 @@
             <div class="animation-container">
                 <div class="animation-header">
                     <h2>Анимация векторной диаграммы изменения напряжения</h2>
-                    <div class="animation-info">Интерактивная векторная диаграмма</div>
                 </div>
                 
                 <div class="graph-wrapper">
@@ -450,14 +504,18 @@
                         <line x1="790" y1="133" x2="790" y2="0" stroke="#ff66aa" stroke-width="2" stroke-dasharray="5,5" />
                         <line x1="950" y1="258" x2="950" y2="0" stroke="#ff66aa" stroke-width="2" stroke-dasharray="5,5" />
 
-                        <!-- 5. ГОРИЗОНТАЛЬНЫЕ СТРЕЛКИ -->
-                        <line x1="150" y1="55" x2="405" y2="55" stroke="#ff3366" stroke-width="2" />
-                        <polygon points="405,55 395,50 395,60" fill="#ff3366" />
-                        <line x1="405" y1="55" x2="790" y2="55" stroke="#ff3366" stroke-width="2" />
-                        <polygon points="405,55 415,50 415,60" fill="#ff3366" />
-                        <line x1="790" y1="55" x2="950" y2="55" stroke="#ff3366" stroke-width="2" />
-                        <polygon points="790,55 800,50 800,60" fill="#ff3366" />
-                        <polygon points="950,55 940,50 940,60" fill="#ff3366" />
+                           <!-- 5. ГОРИЗОНТАЛЬНЫЕ СТРЕЛКИ -->
+    <line x1="150" y1="55" x2="405" y2="55" stroke="#ff3366" stroke-width="2" />
+    <polygon points="150,55 160,50 160,60" fill="#ff3366" /> <!-- Стрелка вправо от первой линии -->
+    <polygon points="405,55 395,50 395,60" fill="#ff3366" /> <!-- Стрелка влево ко второй линии -->
+    
+    <line x1="405" y1="55" x2="790" y2="55" stroke="#ff3366" stroke-width="2" />
+    <polygon points="405,55 415,50 415,60" fill="#ff3366" /> <!-- Стрелка вправо от второй линии -->
+    <polygon points="790,55 780,50 780,60" fill="#ff3366" /> <!-- Стрелка влево к третьей линии -->
+    
+    <line x1="790" y1="55" x2="950" y2="55" stroke="#ff3366" stroke-width="2" />
+    <polygon points="790,55 800,50 800,60" fill="#ff3366" /> <!-- Стрелка вправо от третьей линии -->
+    <polygon points="950,55 940,50 940,60" fill="#ff3366" /> <!-- Стрелка влево к четвертой линии -->
 
                         <!-- 6. НАЗВАНИЯ НА ПУНКТИРНЫХ ЛИНИЯХ -->
                         <text x="140" y="100" font-family="Arial" font-size="20" fill="#ff3366" text-anchor="end">
@@ -478,10 +536,10 @@
                             X<tspan font-size="16" baseline-shift="sub">г</tspan>+X<tspan font-size="16" baseline-shift="sub">т1</tspan>
                         </text>
                         <text x="595" y="40" font-family="Arial" font-size="20" fill="#ff3366" text-anchor="middle">
-                            X<tspan font-size="16" baseline-shift="sub">г</tspan>+X<tspan font-size="16" baseline-shift="sub">т1</tspan>+X<tspan font-size="16" baseline-shift="sub">л</tspan>
+                            X<tspan font-size="16" baseline-shift="sub">л</tspan>
                         </text>
                         <text x="870" y="40" font-family="Arial" font-size="20" fill="#ff3366" text-anchor="middle">
-                            X<tspan font-size="16" baseline-shift="sub">г</tspan>+X<tspan font-size="16" baseline-shift="sub">т1</tspan>+X<tspan font-size="16" baseline-shift="sub">л</tspan>+X<tspan font-size="16" baseline-shift="sub">т2</tspan>
+                           X<tspan font-size="16" baseline-shift="sub">т2</tspan>
                         </text>
 
                         <!-- 7. Розовые точки -->
@@ -501,8 +559,22 @@
                         <!-- 8. ТОЧКА ЭЦК -->
                         <circle cx="550" cy="258" r="4" class="key-point" />
                         <text x="570" y="275" font-family="Arial" font-size="18" fill="#ff3366">ЭЦК</text>
+
+<!-- 8. РОЗОВЫЙ ВЕКТОР ВВЕРХ ОТ КОНЦА РОЗОВОЙ ЛИНИИ -->
+<line x1="950" y1="258" x2="950" y2="133" stroke="#ff0066" stroke-width="4" stroke-linecap="round" />
+<polygon points="950,131 942,146 958,146" fill="#ff0066" /> <!-- Стрелка вверх - пожирнее -->
                     </svg>
                 </div>
+            </div>
+        </div>
+        
+        <!-- ОБЛАСТЬ СХЕМЫ УРОВНЯ ШИН - ДОБАВЛЯЕТСЯ ЗДЕСЬ -->
+        <div class="scheme-container">
+            <div class="scheme-header">
+                <h2>Схема уровня шин</h2>
+            </div>
+            <div class="scheme-image">
+                <img src="https://i.postimg.cc/MH7JmTTH/Snimok-ekrana-2025-12-10-223637.png" alt="Схема уровня шин">
             </div>
         </div>
         
